@@ -42,9 +42,11 @@ import gc
 embeddings_index = {}    #creates empty list
 glove = open('../datas/train.tsv') #opens the test document for reading
 for line in tqdm(glove): #for every line in this text do the following        (tqdm: and show the progress)
-    values = line.split(" ")  #splits the string every time there is a space into seperate strings
+    values = line.split("\t")  #splits the string every time there is a space into seperate strings
     word = values[0] #the first string in this text file is always the word
     #coefs = np.asarray(values[1:], dtype=np.float32) # the following strings are the "explanation"
-    print(word)
+   #print(word)
     embeddings_index[word] = 2 #the list is now filled with entries consisting of the word and the respective "explanations" (word vectors)
+  
 glove.close() #closes the file such that is not possible to read it anymore
+print(embeddings_index)
