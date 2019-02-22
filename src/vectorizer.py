@@ -44,6 +44,6 @@ model.add(GRU(units=32,dropout=0.2, recurrent_dropout=0.2))
 model.add(Dense(1, activation = 'sigmoid'))
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-
+print(X_train.shape)
 print("train ... ")
-model.fit(X_train_norm, y_train,batch_size=128,epochs=25,validation_data=(X_test_norm,y_test), verbose=2)
+#model.fit(X_train_norm, y_train,batch_size=128,epochs=25,validation_data=(X_test_norm,y_test), verbose=2)
