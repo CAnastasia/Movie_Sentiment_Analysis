@@ -7,8 +7,8 @@ We try classifying textual movie reviews as either positive/negative, or giving 
 rating from 0 (negative) to 4 (positive).
 
 ### Techniques covered
-- Single layer neural net
-- Deep neural net
+- Decision Trees / Random Forest
+- Neural Networks
 
 
 ## References
