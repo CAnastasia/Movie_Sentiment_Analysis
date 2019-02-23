@@ -23,10 +23,16 @@
          aria-selected="true">Description</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="svm-tab" data-toggle="tab" href="#svm" role="tab" aria-selected="false">SVM</a>
+      <a class="nav-link" id="repfeat-tab" data-toggle="tab" href="#repfeat" role="tab" aria-selected="false">Feature representation</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="modov-tab" data-toggle="tab" href="#modov" role="tab" aria-selected="false">Models overview</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="rf-tab" data-toggle="tab" href="#rf" role="tab" aria-selected="false">Random Forest</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="svm-tab" data-toggle="tab" href="#svm" role="tab" aria-selected="false">SVM</a>
     </li>
   </ul>
 
@@ -34,27 +40,51 @@
     <div class="tab-pane fade show active" id="desc" role="tabpanel" aria-labelledby="home-tab">
       <h2>Introduction</h2>
       <p>This is a group project from Université Claude Bernard Lyon 1 students.</p>
-      <h3>Libraries used</h3>
+      <h3>Libraries we used</h3>
       <ul>
         <li><a href="https://pandas.pydata.org/">pandas</a>, a python data analysis library </li>
         <li><a href="https://keras.io/">Keras</a>, a python deep learning library </li>
+        <li><a href="https://scikit-learn.org">scikit-learn</a>, a python machine learning library </li>
       </ul>
 
 
       <h2>Dataset description</h2>
       <p>This dataset comes from the <a href="https://www.kaggle.com/c/sentiment-analysis-on-movie-reviews">"Sentiment Analysis on Movie Reviews"</a> Kaggle Challenge.
         It was extracted from the <a href="https://www.rottentomatoes.com/">Rotten Tomatoes</a> Website.</p>
-      <h3>Files</h3>
-      <h4>Train.tsv</h4>
-      <h4>Test.tsv</h4>
+      <h3>Sample sentences</h3>
+      <p>Here are a few sentence examples from the dataset:</p>
+      <h4>Sample #1</h4>
+      <samp><p>A series of escapades demonstrating the adage that what is good for the goose is also good for the gander ,
+        some of which occasionally amuses but none of which amounts to much of a story .</p></samp>
+      <h4>Sample #2</h4>
+      <samp><p>This quiet , introspective and entertaining independent is worth seeking .</p></samp>
+      <h4>Sample #3</h4>
+      <samp><p>Narratively , Trouble Every Day is a plodding mess .</p></samp>
     </div>
 
-    <div class="tab-pane fade" id="svm" role="tabpanel" aria-labelledby="profile-tab">
-      <h2>Support Vector Machine</h2>
+    <div class="tab-pane fade" id="modov" role="tabpanel" aria-labelledby="contact-tab">
+      <h2>Models overview</h2>
+    </div>
+
+    <div class="tab-pane fade" id="repfeat" role="tabpanel" aria-labelledby="contact-tab">
+      <h2>Feature representation</h2>
+      <h3>Introduction</h3>
+      <p>It is not possible to feed raw string data directly into most models. First, we have to decide how we will
+      convert the movie reviews into a format that can be handled by the models we want to use.</p>
+
+      <h3>Integer dictionnary / One-hot encoding</h3>
+
+      <h3>Word embeddings</h3>
     </div>
 
     <div class="tab-pane fade" id="rf" role="tabpanel" aria-labelledby="contact-tab">
       <h2>Random Forest</h2>
+      <h3>Introduction</h3>
+    </div>
+
+    <div class="tab-pane fade" id="svm" role="tabpanel" aria-labelledby="profile-tab">
+      <h2>Support Vector Machine</h2>
+      <h3>Introduction</h3>
     </div>
 
   </div>
