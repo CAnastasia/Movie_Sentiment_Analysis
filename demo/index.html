@@ -29,10 +29,7 @@
       <a class="nav-link" id="modov-tab" data-toggle="tab" href="#modov" role="tab" aria-selected="false">Models overview</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="rf-tab" data-toggle="tab" href="#rf" role="tab" aria-selected="false">Random Forest</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="svm-tab" data-toggle="tab" href="#svm" role="tab" aria-selected="false">SVM</a>
+      <a class="nav-link" id="rf-tab" data-toggle="tab" href="#rf" role="tab" aria-selected="false">Decision Trees</a>
     </li>
   </ul>
 
@@ -45,6 +42,7 @@
         <li><a href="https://pandas.pydata.org/">pandas</a>, a python data analysis library </li>
         <li><a href="https://keras.io/">Keras</a>, a python deep learning library </li>
         <li><a href="https://scikit-learn.org">scikit-learn</a>, a python machine learning library </li>
+        <li><a href="https://github.com/nok/sklearn-porter">sklearn-porter</a>, to transpile sklearn models to JS </li>
       </ul>
 
 
@@ -64,6 +62,22 @@
 
     <div class="tab-pane fade" id="modov" role="tabpanel" aria-labelledby="contact-tab">
       <h2>Models overview</h2>
+      <ul>
+        <li>Decision Tree</li>
+        <li>Random Forest</li>
+        <li>SVM</li>
+        <li>Single-layer neural net</li>
+        <li>Deep neural net</li>
+        <li>Convolutional neural net</li>
+        <li>LSTM long short-term memory</li>
+      </ul>
+
+      <h2>Binary classification accuracy</h2>
+      <p>TODO: overview table listing the different accuracies</p>
+
+      <h2>Classification on a 0-4 scale</h2>
+      <p>0: negative, 1: somewhat negative, 2: neutral, 3: somewhat positive, 4:positive</p>
+      <p>TODO: overview table listing the different accuracies</p>
     </div>
 
     <div class="tab-pane fade" id="repfeat" role="tabpanel" aria-labelledby="contact-tab">
@@ -73,18 +87,17 @@
       convert the movie reviews into a format that can be handled by the models we want to use.</p>
 
       <h3>Integer dictionnary / One-hot encoding</h3>
-
+        <p>TODO</p>
       <h3>Word embeddings</h3>
+        <p>TODO</p>
     </div>
 
     <div class="tab-pane fade" id="rf" role="tabpanel" aria-labelledby="contact-tab">
-      <h2>Random Forest</h2>
+      <h2>Decision trees</h2>
       <h3>Introduction</h3>
-    </div>
+      <p>TODO</p>
+      <h3><a href="https://www.kaggle.com/mannko/rottentomatoes-decisiontree-randomforest-onehot/">Kaggle Kernel</a></h3>
 
-    <div class="tab-pane fade" id="svm" role="tabpanel" aria-labelledby="profile-tab">
-      <h2>Support Vector Machine</h2>
-      <h3>Introduction</h3>
     </div>
 
   </div>
