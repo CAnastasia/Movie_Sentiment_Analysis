@@ -31,7 +31,7 @@ import os
 
 print(os.listdir("../datas"))
 #else print(os.listdir("./datas"))
-import gc
+# import gc
 #pd.options.display.max_colwidth=100
 #pd.set_option('display.max_colwidth',100)
 
@@ -41,12 +41,12 @@ import gc
 
 embeddings_index = {}    #creates empty list
 glove = open('../datas/train.tsv') #opens the test document for reading
+
 for line in tqdm(glove): #for every line in this text do the following        (tqdm: and show the progress)
     values = line.split("\t")  #splits the string every time there is a space into seperate strings
-    word = values[0] #the first string in this text file is always the word
+    word = values[0]
+   # print(values)
+ #the first string in this text file is always the word
     #coefs = np.asarray(values[1:], dtype=np.float32) # the following strings are the "explanation"
-   #print(word)
     embeddings_index[word] = 2 #the list is now filled with entries consisting of the word and the respective "explanations" (word vectors)
-  
 glove.close() #closes the file such that is not possible to read it anymore
-print(embeddings_index)

@@ -1,6 +1,6 @@
 PhraseId	SentenceId	Phrase
 156061	8545	An intermittently pleasing but mostly routine effort .
-156062	8545	An intermittently pleasing but mostly routine effort
+156062  8545    An intermittently pleasing but mostly routine effort
 156063	8545	An
 156064	8545	intermittently pleasing but mostly routine effort
 156065	8545	intermittently pleasing but mostly routine
@@ -25,7 +25,7 @@ PhraseId	SentenceId	Phrase
 156084	8546	the only thing
 156085	8546	the
 156086	8546	only thing
-156087	8546	only
+156087  8546	only
 156088	8546	thing
 156089	8546	that 's worth watching in Birthday Girl , a film by the stage-trained Jez Butterworth -LRB- Mojo -RRB- that serves as yet another example of the sad decline of British comedies in the post-Full Monty world
 156090	8546	that
