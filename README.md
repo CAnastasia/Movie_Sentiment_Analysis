@@ -1,1 +1,15 @@
-# Quora_toxic_content_detection
+# Sentiment analysis on Movie Reviews
+
+## Description
+This is a Kaggle challenge project from *Université Claude Bernard Lyon 1* students, where
+we try different techniques on a sentiment analysis problem.   
+We try classifying textual movie reviews as either positive/negative, or giving it a "positivity"
+rating from 0 (negative) to 4 (positive).
+
+### Techniques covered
+- Decision Trees / Random Forest
+- Neural Networks
+
+
+## References
+- Kaggle challenge: https://www.kaggle.com/c/sentiment-analysis-on-movie-reviews

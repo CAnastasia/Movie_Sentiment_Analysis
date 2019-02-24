@@ -1,0 +1,15 @@
+.container {
+    padding-bottom: 2rem;
+    padding-top: 1rem;
+}
+
+@media (min-width: 768px) {
+    body {
+        margin-top: 1rem;
+        background: url("../movies.gif")
+    }
+    .container {
+        background-color: #fff;
+        border-radius: 1rem;
+    }
+}
