@@ -11,5 +11,20 @@ def addition(request, nombre1, nombre2):
     return HttpResponse(total)
     #return render(request, 'MachineLearn/addition.html', locals())
 
-def index(request):
+def state(request):
+    return render(request, 'MachineLearn/state.html')
+
+def feature(request):
+    return render(request, 'MachineLearn/feature.html')
+
+def models(request):
+    return render(request, 'MachineLearn/models.html')
+
+def submission(request):
+    return render(request, 'MachineLearn/submission.html')
+
+def description(request):
+    return render(request, 'MachineLearn/description.html')
+
+def MachineLean(request):
     return render(request, 'MachineLearn/MachineLearn.html')
