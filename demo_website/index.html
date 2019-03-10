@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="assets/vendor/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+  <title>Movie Sentiment Analysis</title>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <img class="float-left" src="assets/logo.png">
+    <h1>Sentiment Analysis on Movie Reviews</h1>
+    <p class="font-italic">L3 Informatique, Université Claude Bernard Lyon 1.</p>
+  </header>
+
+
+  <ul class="nav nav-tabs" id="tab-list" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="desc-tab" data-toggle="tab" href="#desc" role="tab" aria-controls="home"
+         aria-selected="true">Description</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" id="sota-tab" data-toggle="tab" href="#sota" role="tab" aria-selected="false">State of
+        the art</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" id="repfeat-tab" data-toggle="tab" href="#repfeat" role="tab" aria-selected="false">Feature
+        representation</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" id="sub-tab" data-toggle="tab" href="#sub" role="tab" aria-selected="false">Our submissions</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" id="rf-tab" data-toggle="tab" href="#rf" role="tab" aria-selected="false">Decision Trees</a>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="tab-content">
+    <div class="tab-pane fade show active" id="desc" role="tabpanel" aria-labelledby="home-tab">
+      <h2>Introduction</h2>
+      <p>This is a group project from Université Claude Bernard Lyon 1 students.</p>
+
+
+      <h2>Dataset description</h2>
+      <p>This dataset comes from the <a href="https://www.kaggle.com/c/movie-review-sentiment-analysis-kernels-only">"Movie Review Sentiment Analysis"</a> Kaggle Challenge.
+        It was extracted from the <a href="https://www.rottentomatoes.com/">Rotten Tomatoes</a> Website.</p>
+      <h3>Random samples extracted from the dataset</h3>
+      <button id="shuffle" class="btn btn-dark breathe">Shuffle!</button>
+      <h4>Sample 1</h4>
+      <samp><p id="samp1"></p></samp>
+      <h4>Sample 2</h4>
+      <samp><p id="samp2"></p></samp>
+      <h4>Sample 3</h4>
+      <samp><p id="samp3"></p></samp>
+    </div>
+
+    <div class="tab-pane fade" id="sota" role="tabpanel">
+      <h2>State of the art: what results do the best available models get?</h2>
+
+      <h3>Dataset origins</h3>
+      <p>The dataset we are working with seems to be based on a popular Natural Language Processing (NLP) dataset. It is called
+        <a href="https://nlp.stanford.edu/sentiment/index.html">Stanford Sentiment Treebank (SST).</a></p>
+      <h3>Classification granularity</h3>
+      <p>The SST dataset is commonly classified following one of the 2 following standards:</p>
+      <ul>
+        <li>Binary classification: a movie review is classified as either:</li>
+        <ul>
+          <li>negative (0)</li>
+          <li>positive (1)</li>
+        </ul>
+        <li>Fined-grained / 5-way classification: a movie review is given a positivity score as follows:</li>
+        <ul>
+          <li>negative (0)</li>
+          <li>somewhat negative (1)</li>
+          <li>neutral (2)</li>
+          <li>somewhat positive (3)</li>
+          <li>positive (4)</li>
+        </ul>
+      </ul>
+      <h3>State of the art results</h3>
+      <span class="font-weight-bold">NOTE: Those results do not reflect the accuracies that can be attained on the Kaggle challenge.
+      They are valid only for the original SST dataset.</span>
+      <h4>Binary</h4>
+        <p>As of March 2019, the best accuracy for binary classification is <em class="font-weight-bold">95.6%</em> (<a href="http://nlpprogress.com/english/sentiment_analysis.html">source</a>).
+      Link to the research paper: <a href="https://arxiv.org/abs/1901.11504">Multi-Task Deep Neural Networks for Natural Language Understanding</a>.</p>
+      <h4>Five-way</h4>
+        <p>As of March 2019, the best accuracy for 5-way classification is <em class="font-weight-bold">54.7%</em> (<a href="http://nlpprogress.com/english/sentiment_analysis.html">source</a>).
+          Link to the research paper: <a href="https://arxiv.org/abs/1708.00107">Learned in Translation: Contextualized Word Vectors</a>.</p>
+
+      <h3>How far can we go?</h3>
+      <p>It should not be possible to get a 100% accuracy. A good example is in the logo from this website: "everything
+        you'd expect -- but nothing more". It is possible to assign either a positive or negative sentiment to that sentence,
+        so we don't really know the intent of the author unless we look at how many stars he gave to the movie. Moreover,
+        the sentences in the dataset have been labelled by human beings, which means some sentences could be labelled with another sentiment
+        if they were rated by someone else.
+      </p>
+
+      <h3>Human performance</h3>
+      <p>As can be seen on the <a href="https://gluebenchmark.com/leaderboard">GLUE Benchmark</a>, <span class="font-weight-bold">human beings are still
+      better than machines</span> on the binary classification task, but they don't get a 100% accuracy.</p>
+    </div>
+
+    <div class="tab-pane fade" id="repfeat" role="tabpanel">
+      <h2>Feature representation</h2>
+      <p>We use supervised learning: the models we show learn to predict sentiment from text by looking at labelled examples. However, we can't feed raw string
+      data directly into the models: the text needs to be transformed (and simplified) in order to be usable by the models.</p>
+      <p>There are other ways to do it, but here we show 2 methods that are frequently used in NLP problems. In many NLP models,
+      we end up wanting to transform an input sentence into an input vector.</p>
+      <h3>Bag of Words</h3>
+        <p>In the "Bag of Words" approach, we do two different things:
+          <ul>
+            <li>Build a word dictionary: we have to list all the possible words that appear in all the sentences we have.
+            It is possible, during that step, to remove certain words that don't influence the meaning a lot.
+            </li>
+            <li>In each sentence, determine whether any given word in our dictionary appears or not. In the order of the dictionary,
+            we put a '1' in the resulting vector when the word is present and a '0' when the word is absent.</li>
+          </ul>
+      Finally, we are able to encode each sentence into an integer vector, whose length is equal to the number of words
+      we have in our dictionary:
+        </p>
+        <img alt="Bag of Words illustration" src="assets/bagofwords.png" class="mx-auto d-block">
+      <p>There are some drawbacks to that method: first, we discard the order of the words, which can be useful for meaning.
+      Second, there are no relationships between words, they are either present or absent.</p>
+      <h3>Word embeddings</h3>
+      <p>With word embeddings, we turn each word of the sentence into an integer vector. Word embeddings rely on the distributional hypothesis:
+      the basic idea is that two words that tend to appear in the same context tend to have a similar meaning.</p>
+        <img alt="Word embeddings illustration" src="assets/word_embeddings.png" class="mx-auto d-block">
+      <p class="text-center">Source: <em>Deep Learning with Python, François Chollet</em></p>
+      <p>That technique is interesting because it allows us to capture relationships between words. For instance, the
+      relationship between 'Dog' and 'Cat' is the same as between 'Wolf' and 'Tiger' when we represent the word vectors into space.</p>
+      <p>It is possible to learn the word embedding vectors directly from our dataset, as it is large enough. It is also possible
+      to use external word embedding vectors, that were trained on other text documents.</p>
+    </div>
+
+    <div class="tab-pane fade" id="sub" role="tabpanel">
+      <h2>Our Kaggle submission scores</h2>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Model</th>
+          <th scope="col">Feature representation</th>
+          <th scope="col">Kaggle score</th>
+          <td scope="col">Kernel link</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Random Forest</td>
+          <td>Bag of Words (One-hot vectors)</td>
+          <td>57.4</td>
+          <td><a href="https://www.kaggle.com/mannko/rottentomatoes-decisiontree-randomforest-onehot/">Go</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tab-pane fade" id="rf" role="tabpanel">
+      <h2>Decision trees (and random forest)</h2>
+
+      <h3>How does it work?</h3>
+      <p>TODO</p>
+
+      <h3>Try the random forest on your own sentence!</h3>
+
+
+
+      <div class="form-group">
+        <textarea id="rftext" class="form-control breathe" placeholder="Enter your own review here"></textarea>
+
+        <button id="loadsentimentrf" class="btn btn-dark breathe">Load sentence from dataset</button>
+        <button id="getsentiment" class="btn btn-dark breathe">Get sentiment!</button>
+
+        <p>Model prediction: <span id="rfpred">(None)</span></p>
+      </div>
+
+      <h3><a href="https://www.kaggle.com/mannko/rottentomatoes-decisiontree-randomforest-onehot/">Kaggle Kernel</a>
+      </h3>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="assets/vendor/js/jquery-3.3.1.min.js"></script>
+<script src="assets/vendor/js/bootstrap.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
