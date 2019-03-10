@@ -1,0 +1,23 @@
+{% extends "./index.html" %}
+{% load static %}
+
+{% block title %}{{ Retest }} {% endblock %}
+
+{% block nav %}
+    <nav class=" navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <img class="imgr" src="{% static 'MachineLearn/imgs/download.png' %}"
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                        <li><button type="button" class="btn btn-outline-info tst">Login</button></li>
+                        <li><button type="button" class="btn btn-outline-dark tbt">Sign Up</button></li>
+                </ul>   
+            </div>
+        </nav>
+{% endblock %}
+
+{% block content %}
+    
+{% endblock %}
