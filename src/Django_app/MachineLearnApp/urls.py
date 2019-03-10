@@ -9,8 +9,12 @@ urlpatterns = [
     path('', views.home),
     path('add/<int:nombre1>/<int:nombre2>/', addition.addition),
     path('date_act/', addition.date_actuelle),
-    path('test/', addition.index),
-    path('imgs/style.css', addition.index)
+    path('MachineLearn/', addition.MachineLean),
+    path('state/', addition.state),
+    path('feature/', addition.feature),
+    path('models/', addition.models),
+    path('sub/', addition.submission),
+    path('desc/', addition.description)
 ]
 
 
