@@ -12,4 +12,4 @@ rating from 0 (negative) to 4 (positive).
 
 
 ## References
-- Kaggle challenge: https://www.kaggle.com/c/sentiment-analysis-on-movie-reviews
+- Kaggle challenge: https://www.kaggle.com/c/movie-review-sentiment-analysis-kernels-only

@@ -1,0 +1,24 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'MachineLearn/css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'MachineLearn/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'MachineLearn/css/main.css' %}" type="text/css">
+   <title>{% block title %}Machine Learning App Visualisation {% endblock %}</title>
+</head>
+<body>
+<header></header>
+    <nav>
+       {% block nav %}
+       {% endblock %}
+   </nav>
+   <section id="content">
+       {% block content %}{% endblock %}
+   </section>
+<footer>{% block footer %}
+        {% endblock %}
+</footer>
+</body>
+</html>
