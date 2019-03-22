@@ -1,0 +1,51 @@
+{% extends "./header.html" %}
+{% load static  %}
+
+{% block content %}
+     <div  id="sota" role="tabpanel">
+      <h2>State of the art: what results do the best available models get?</h2>
+
+      <h3>Dataset origins</h3>
+      <p>The dataset we are working with seems to be based on a popular Natural Language Processing (NLP) dataset. It is called
+        <a href="https://nlp.stanford.edu/sentiment/index.html">Stanford Sentiment Treebank (SST).</a></p>
+      <h3>Classification granularity</h3>
+      <p>The SST dataset is commonly classified following one of the 2 following standards:</p>
+      <ul>
+        <li>Binary classification: a movie review is classified as either:</li>
+        <ul>
+          <li>negative (0)</li>
+          <li>positive (1)</li>
+        </ul>
+        <li>Fined-grained / 5-way classification: a movie review is given a positivity score as follows:</li>
+        <ul>
+          <li>negative (0)</li>
+          <li>somewhat negative (1)</li>
+          <li>neutral (2)</li>
+          <li>somewhat positive (3)</li>
+          <li>positive (4)</li>
+        </ul>
+      </ul>
+      <h3>State of the art results</h3>
+      <span class="font-weight-bold">NOTE: Those results do not reflect the accuracies that can be attained on the Kaggle challenge.
+      They are valid only for the original SST dataset.</span>
+      <h4>Binary</h4>
+        <p>As of March 2019, the best accuracy for binary classification is <em class="font-weight-bold">95.6%</em> (<a href="http://nlpprogress.com/english/sentiment_analysis.html">source</a>).
+      Link to the research paper: <a href="https://arxiv.org/abs/1901.11504">Multi-Task Deep Neural Networks for Natural Language Understanding</a>.</p>
+      <h4>Five-way</h4>
+        <p>As of March 2019, the best accuracy for 5-way classification is <em class="font-weight-bold">54.7%</em> (<a href="http://nlpprogress.com/english/sentiment_analysis.html">source</a>).
+          Link to the research paper: <a href="https://arxiv.org/abs/1708.00107">Learned in Translation: Contextualized Word Vectors</a>.</p>
+
+      <h3>How far can we go?</h3>
+      <p>It should not be possible to get a 100% accuracy. A good example is in the logo from this website: "everything
+        you'd expect -- but nothing more". It is possible to assign either a positive or negative sentiment to that sentence,
+        so we don't really know the intent of the author unless we look at how many stars he gave to the movie. Moreover,
+        the sentences in the dataset have been labelled by human beings, which means some sentences could be labelled with another sentiment
+        if they were rated by someone else.
+      </p>
+
+      <h3>Human performance</h3>
+      <p>As can be seen on the <a href="https://gluebenchmark.com/leaderboard">GLUE Benchmark</a>, <span class="font-weight-bold">human beings are still
+      better than machines</span> on the binary classification task, but they don't get a 100% accuracy.</p>
+    </div>
+
+{% endblock %}

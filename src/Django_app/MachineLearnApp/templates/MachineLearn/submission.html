@@ -1,0 +1,27 @@
+{% extends "./header.html" %}
+
+{% load static %}
+
+{% block content %} 
+     <div  id="sub" role="tabpanel">
+      <h2>Our Kaggle submission scores</h2>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Model</th>
+          <th scope="col">Feature representation</th>
+          <th scope="col">Kaggle score</th>
+          <td scope="col">Kernel link</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Random Forest</td>
+          <td>Bag of Words (One-hot vectors)</td>
+          <td>57.4</td>
+          <td><a href="https://www.kaggle.com/mannko/rottentomatoes-decisiontree-randomforest-onehot/">Go</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+{% endblock%} 

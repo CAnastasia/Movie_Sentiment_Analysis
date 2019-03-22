@@ -1,0 +1,38 @@
+{% extends "./header.html" %}
+
+{% load static %}
+
+{% block content %} 
+     <div id="repfeat" role="tabpanel">
+      <h2>Feature representation</h2>
+      <p>We use supervised learning: the models we show learn to predict sentiment from text by looking at labelled examples. However, we can't feed raw string
+      data directly into the models: the text needs to be transformed (and simplified) in order to be usable by the models.</p>
+      <p>There are other ways to do it, but here we show 2 methods that are frequently used in NLP problems. In many NLP models,
+      we end up wanting to transform an input sentence into an input vector.</p>
+      <h3>Bag of Words</h3>
+        <p>In the "Bag of Words" approach, we do two different things:
+          <ul>
+            <li>Build a word dictionary: we have to list all the possible words that appear in all the sentences we have.
+            It is possible, during that step, to remove certain words that don't influence the meaning a lot.
+            </li>
+            <li>In each sentence, determine whether any given word in our dictionary appears or not. In the order of the dictionary,
+            we put a '1' in the resulting vector when the word is present and a '0' when the word is absent.</li>
+          </ul>
+      Finally, we are able to encode each sentence into an integer vector, whose length is equal to the number of words
+      we have in our dictionary:
+        </p>
+        <img alt="Bag of Words illustration" src="assets/bagofwords.png" class="mx-auto d-block">
+      <p>There are some drawbacks to that method: first, we discard the order of the words, which can be useful for meaning.
+      Second, there are no relationships between words, they are either present or absent.</p>
+      <h3>Word embeddings</h3>
+      <p>With word embeddings, we turn each word of the sentence into an integer vector. Word embeddings rely on the distributional hypothesis:
+      the basic idea is that two words that tend to appear in the same context tend to have a similar meaning.</p>
+        <img alt="Word embeddings illustration" src="assets/word_embeddings.png" class="mx-auto d-block">
+      <p class="text-center">Source: <em>Deep Learning with Python, François Chollet</em></p>
+      <p>That technique is interesting because it allows us to capture relationships between words. For instance, the
+      relationship between 'Dog' and 'Cat' is the same as between 'Wolf' and 'Tiger' when we represent the word vectors into space.</p>
+      <p>It is possible to learn the word embedding vectors directly from our dataset, as it is large enough. It is also possible
+      to use external word embedding vectors, that were trained on other text documents.</p>
+    </div>
+
+{% endblock%} 

@@ -1,0 +1,28 @@
+{% extends "./header.html" %}
+{% load static %}
+{% block content %} 
+    <div id="rf" role="tabpanel">
+      <h2>Decision trees (and random forest)</h2>
+
+      <h3>How does it work?</h3>
+      <p>TODO</p>
+
+      <h3>Try the random forest on your own sentence!</h3>
+
+
+
+      <div class="form-group">
+        <textarea id="rftext" class="form-control breathe" placeholder="Enter your own review here"></textarea>
+
+        <button id="loadsentimentrf" class="btn btn-dark breathe">Load sentence from dataset</button>
+        <button id="getsentiment" class="btn btn-dark breathe">Get sentiment!</button>
+
+        <p>Model prediction: <span id="rfpred">(None)</span></p>
+      </div>
+
+      <h3><a href="https://www.kaggle.com/mannko/rottentomatoes-decisiontree-randomforest-onehot/">Kaggle Kernel</a>
+      </h3>
+
+    </div>
+
+{% endblock %}
