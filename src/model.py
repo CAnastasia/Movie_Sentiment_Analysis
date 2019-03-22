@@ -20,3 +20,11 @@ def model(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
     #tester le model    
      #Prediction 
     return model
+
+def save_to_disk(model):
+    model_json = model.to_json()
+    with open("model.json", "w") as json_file:
+    json_file.write(model_json)
+    # serialize weights to HDF5
+    model.save_weights("model.h5")
+    print("Saved model to disk")

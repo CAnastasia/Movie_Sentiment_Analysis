@@ -31,6 +31,7 @@ def main():
     X_train, X_test,y_train, y_test = train_test_split(total_sentences, y, stratify=y)
     tokenizer= Tokenizer()
     print(y_train.shape)
+    print(X_train.shape)
     tokenizer.fit_on_texts(list(total_sentences))
 
     #Padding des sentences en vecteurs de même tailles 
@@ -48,7 +49,7 @@ def main():
     mode = model(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test)
     
     print("Test phrase :")
-    string = "Like being invited to a classy dinner soiree"
+    string = "in a sincere performance"
     query = tokenizer.texts_to_sequences(string)
     print("pad")
     query = pad_sequences(query, maxlen=max_length)
