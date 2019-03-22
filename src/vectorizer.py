@@ -45,7 +45,16 @@ def main():
     
     X_train_norm = pad_sequences(X_train_tok, maxlen= max_length, padding = 'post')
     X_test_norm = pad_sequences(X_test_tok, maxlen= max_length, padding = 'post')
-    model(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test)
+    mode = model(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test)
+    
+    print("Test phrase :")
+    string = "Like being invited to a classy dinner soiree"
+    query = tokenizer.texts_to_sequences(string)
+    print("pad")
+    query = pad_sequences(query, maxlen=max_length)
+
+    prediction = mode.predict_classes(x=query)
+    print(prediction)
     return None
 
 if __name__ == '__main__':
