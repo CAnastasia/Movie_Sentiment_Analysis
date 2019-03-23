@@ -9,7 +9,7 @@ def model(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
     print('Building model...')
     model = Sequential()
     model.add(Embedding(total_size,Embedding_Dim,input_length = max_length))
-    model.add(Dropout(0.3))
+    #model.add(Dropout(0.3))
     model.add(GRU(units=32,dropout=0.2, recurrent_dropout=0.2))
     model.add(Dense(5, activation = 'sigmoid'))
     model.summary()
