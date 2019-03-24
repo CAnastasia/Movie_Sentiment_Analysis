@@ -20,7 +20,7 @@ def model(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
     model.summary()
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     print("train ... ")
-    model.fit(X_train_norm, y_train,batch_size=32,epochs=3,validation_data=(X_test_norm,y_test), verbose=2)
+    model.fit(X_train_norm, y_train,batch_size=32,epochs=8,validation_data=(X_test_norm,y_test), verbose=2)
     #tester le model    
      #Prediction 
     return model
@@ -45,3 +45,5 @@ def load_from_disk(filejs, fileh5):
     loaded_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     print("test44")
     return loaded_model
+
+    #You won’t mind seeing the Titanic sink all over again

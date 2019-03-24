@@ -34,7 +34,7 @@ def main():
         #----------------------------------------------------------------------------------------------
         target_sentiment = data.Sentiment.values
         y = to_categorical(target_sentiment)
-        X_train, X_test,y_train, y_test = train_test_split(total_sentences, y, stratify=y)
+        X_train, X_test,y_train, y_test = train_test_split(total_sentences, y, test_size=0.2, stratify=y, random_state=123)
         tokenizer= Tokenizer()
         
         print(y_train.shape)
@@ -48,10 +48,7 @@ def main():
         max_length = max([len(s.split(' ')) for s in total_sentences])
             #On récupère le nombre total de mots
         total_size = len(tokenizer.word_index) + 1
-                
-        
-
-            #Vectorisation des sentences
+        #Vectorisation des sentences
         X_train_tok = tokenizer.texts_to_sequences(X_train)
         X_test_tok = tokenizer.texts_to_sequences(X_test)
         
