@@ -31,7 +31,6 @@ def save_to_disk(model, filejs, fileh5):
     print("Saved model to disk")
 
 def load_from_disk(filejs, fileh5):
-    print("trs")
     json_file = open(filejs, 'r')
     loaded_model_json = json_file.read()
     json_file.close()
@@ -40,5 +39,4 @@ def load_from_disk(filejs, fileh5):
     loaded_model.load_weights(fileh5)
     print("Loaded model from disk")
     loaded_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    print("test44")
     return loaded_model

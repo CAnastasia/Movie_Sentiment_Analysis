@@ -9,6 +9,8 @@ from nlp_filter import stop_word_phrase, clean_review
 from model import *
 from keras.utils import to_categorical
 
+
+
 def main():
 
     if os.path.exists("./model.h5") == False or os.path.exists("./model.h5") == False or os.path.exists("./tokenizer.pickle")==False:
