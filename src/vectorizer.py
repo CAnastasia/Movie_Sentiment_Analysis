@@ -8,6 +8,8 @@ from tensorflow.python.keras.preprocessing.sequence import pad_sequences
 from nlp_filter import stop_word_phrase, clean_review
 from model import *
 from keras.utils import to_categorical
+import tensorflow as tf
+
 
 def main():
 
@@ -56,20 +58,30 @@ def main():
         X_train_norm = pad_sequences(X_train_tok, maxlen= max_length, padding = 'post')
         X_test_norm = pad_sequences(X_test_tok, maxlen= max_length, padding = 'post')
         mode = model(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test)
+        print("Test phrase :")
+        test = pd.read_csv("test.tcv", delimiter='\t')
+        print(test)
+        query = tokenizer.texts_to_sequences(test['test'])
+        query = pad_sequences(query, maxlen=48)
+        pred = mode.predict(query, verbose=1)
+        predictions = np.round(np.argmax(pred, axis=1)).astype(int)
+
+        print("Prediction : ", predictions)
         save_to_disk(mode, "model.json", "model.h5")
     else:
         mode = load_from_disk("model.json", "model.h5")
         print(mode)
         with open('tokenizer.pickle', 'rb') as handle:
             tokenizer = pickle.load(handle)
-    
-
     print("Test phrase :")
-    string = "in a sincere performance"
-    query = tokenizer.texts_to_sequences(string)
+    test = pd.read_csv("test.tcv", delimiter='\t')
+    print(test)
+    query = tokenizer.texts_to_sequences(test['test'])
     query = pad_sequences(query, maxlen=48)
-    prediction = mode.predict_classes(x=query)
-    print(prediction)
+    pred = mode.predict(query, verbose=1)
+    predictions = np.round(np.argmax(pred, axis=1)).astype(int)
+
+    print("Prediction : ", predictions)
     return None
 
 if __name__ == '__main__':
