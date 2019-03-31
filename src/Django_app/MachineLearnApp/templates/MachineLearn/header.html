@@ -1,11 +1,10 @@
 {% extends "./index.html" %}
 {% load static %}
 
-{% block title %}{{ Retest }} {% endblock %}
+{% block title %}{{ Retest }}{% endblock %}
 
 {% block nav %}
-    <nav class=" navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
+        <div class="navbar-expand-lg navbar-dark bg-dark" >
                     <ul class="navbar-nav">
                     <img class="imgr" src="{% static 'MachineLearn/imgs/ucbl.png' %}" />    
 
@@ -26,7 +25,6 @@
                     </li>
                     </ul>
             </div>
-        </nav>
 {% endblock %}
 
 {% block content %}

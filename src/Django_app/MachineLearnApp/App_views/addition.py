@@ -7,8 +7,11 @@ from tensorflow.python.keras.preprocessing.text import Tokenizer
 from tensorflow.python.keras.preprocessing.sequence import pad_sequences
 from keras.models import load_model
 from keras.models import Sequential,model_from_json
+from keras import backend as K
 import pickle
 import os
+import pandas as pd
+import numpy as np
 
 path = "../"
 print(os.listdir("./"))
@@ -28,7 +31,26 @@ def feature(request):
     return render(request, 'MachineLearn/feature.html')
 
 def models(request):
-    return render(request, 'MachineLearn/models.html')
+    if request.method == 'GET' and 'sentence' in request.GET:
+        K.clear_session()
+        mode = load_from_disk(path+"model.json", path+"model.h5")
+        with open(path+'tokenizer.pickle', 'rb') as handle:
+            tokenizer = pickle.load(handle)
+        sentence = request.GET['sentence']
+        print(sentence)
+        with open(path+"test.tcv", "w") as outfile:
+            outfile.write("test\n")
+            outfile.write(sentence)
+            outfile.write("\n")
+        test = pd.read_csv(path+"test.tcv", delimiter='\t')
+        query = tokenizer.texts_to_sequences(test['test'])
+        query = pad_sequences(query, maxlen=48)
+        pred = mode.predict(query, verbose=1)
+        predictions = np.round(np.argmax(pred, axis=1)).astype(int)
+        print("Prediction : ", predictions)
+        return render(request, 'MachineLearn/models.html', locals())
+    else:
+        return render(request, 'MachineLearn/models.html')
 
 def submission(request):
     return render(request, 'MachineLearn/submission.html')
@@ -59,10 +81,23 @@ def load_from_disk(filejs, fileh5):
     return loaded_model
 
 def model(request, sentence):
+    K.clear_session()
     mode = load_from_disk(path+"model.json", path+"model.h5")
     with open(path+'tokenizer.pickle', 'rb') as handle:
         tokenizer = pickle.load(handle)
-    query = tokenizer.texts_to_sequences(sentence)
+
+    sentence = request.GET['sentence']
+    print(sentence)
+    with open(path+"test.tcv", "w") as outfile:
+        outfile.write("test\n")
+        outfile.write(sentence)
+        outfile.write("\n")
+    #print("Test phrase :")
+    test = pd.read_csv(path+"test.tcv", delimiter='\t')
+    #print(test)
+    query = tokenizer.texts_to_sequences(test['test'])
     query = pad_sequences(query, maxlen=48)
-    prediction = mode.predict_classes(x=query)
-    return return render(request, 'MachineLearn/models.html', locals())
+    pred = mode.predict(query, verbose=1)
+    predictions = np.round(np.argmax(pred, axis=1)).astype(int)
+    print("Prediction : ", predictions)
+    return render(request, 'MachineLearn/models.html', locals())

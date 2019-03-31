@@ -3,12 +3,14 @@
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 1.3rem;
-    background-color: #ffffff;
+    background-color: white;
 }
-h1, h2, h3, h4 { font-weight: 800; }
-h1, h2 { color: #62003c; }
-a { color: #961e64; }
-a:hover { color: #6d1d40; }
+h1, h2, h3, h4 { font-weight: 800;
+                 
+}
+h1, h2 { color: #080706; }
+a { color: #080706; }
+a:hover { color: #D2CDCC; }
 .breathe { margin-top: 0.5rem; margin-bottom: 0.5rem; }
 
 .container {
