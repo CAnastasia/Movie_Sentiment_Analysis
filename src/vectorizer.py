@@ -10,7 +10,7 @@ from model import *
 from keras.utils import to_categorical
 import tensorflow as tf
 from nltk.corpus import sentiwordnet as swn
-from model import model 
+from model import model , model_lstm
 
 def main():
 
@@ -53,7 +53,7 @@ def main():
         X_test_tok = tokenizer.texts_to_sequences(X_test)
         X_train_norm = pad_sequences(X_train_tok, maxlen= max_length, padding = 'post')
         X_test_norm = pad_sequences(X_test_tok, maxlen= max_length, padding = 'post')
-        mode = model(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test)
+        mode = model_lstm(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test)
         save_to_disk(mode, "model.json", "model.h5")
     else:
         mode = load_from_disk("model.json", "model.h5")
