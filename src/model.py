@@ -1,5 +1,5 @@
 from keras.models import Sequential
-from keras.layers import Dense, Embedding, LSTM, GRU, Dropout, Flatten, Activation, CuDNNLSTM
+from keras.layers import Dense, Embedding, LSTM, GRU, Dropout, Flatten, Activation, BatchNormalization
 from keras.layers.embeddings import Embedding
 from keras.models import load_model
 from keras.models import Sequential,model_from_json
@@ -21,6 +21,7 @@ def model(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
     #tester le model    
     #Prediction 
     return model
+
 def model_lstm (total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
     Embedding_Dim = 100
     class_dim = 5
@@ -30,6 +31,55 @@ def model_lstm (total_size, max_length, X_train_norm, y_train, X_test_norm, y_te
     model.add(LSTM(128, input_shape=(X_train_norm.shape[1:]), activation='relu', return_sequences = True))
     model.add(Dropout(0.2))
     model.add(LSTM(32, activation='relu'))
+    model.add(Dropout(0.2))
+    model.add(Dense(5, activation = 'sigmoid'))
+    model.summary()
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+    print("train ... ")
+    model.fit(X_train_norm, y_train,batch_size=128,epochs=3,validation_data=(X_test_norm,y_test), verbose=2)
+    #tester le model    
+    #Prediction 
+    return model
+
+def model_lstm2 (total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
+    Embedding_Dim = 100
+    class_dim = 5
+    print('Building model...')
+    model = Sequential()
+    model.add(Embedding(total_size,Embedding_Dim,input_length = max_length))
+    model.add(GRU(128, input_shape=(X_train_norm.shape[1:]), activation='relu', recurrent_dropout=0.2))
+    model.add(BatchNormalization())
+    model.add(GRU(128, input_shape=(X_train_norm.shape[1:]), activation='relu', recurrent_dropout=0.2))
+    model.add(BatchNormalization())
+    model.add(GRU(128, input_shape=(X_train_norm.shape[1:]), activation='relu', recurrent_dropout=0.2))
+    model.add(BatchNormalization())
+    model.add(Dense(32, input_dim=max_length, activation='relu'))
+    model.add(Dropout(0.2))
+    model.add(Dense(5, activation = 'sigmoid'))
+    model.summary()
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+    print("train ... ")
+    model.fit(X_train_norm, y_train,batch_size=128,epochs=3,validation_data=(X_test_norm,y_test), verbose=2)
+    #tester le model    
+    #Prediction 
+    return model
+
+def model_GRU(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
+    Embedding_Dim = 100
+    class_dim = 5
+    print('Building model...')
+    model = Sequential()
+    model.add(Embedding(total_size,Embedding_Dim,input_length = max_length))
+    model.add(LSTM(128, input_shape=(X_train_norm.shape[1:]), activation='relu', return_sequences = True))
+    model.add(Dropout(0.2))
+    model.add(BatchNormalization())
+    model.add(LSTM(128, input_shape=(X_train_norm.shape[1:]), activation='relu', return_sequences = True))
+    model.add(Dropout(0.1))
+    model.add(BatchNormalization())
+    model.add(LSTM(128, input_shape=(X_train_norm.shape[1:]), activation='relu'))
+    model.add(Dropout(0.2))
+    model.add(BatchNormalization())
+    model.add(Dense(32, input_dim=max_length, activation='relu'))
     model.add(Dropout(0.2))
     model.add(Dense(5, activation = 'sigmoid'))
     model.summary()
