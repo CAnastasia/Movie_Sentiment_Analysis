@@ -14,7 +14,7 @@ urlpatterns = [
     path('models/', addition.models),
     path('sub/', addition.submission),
     path('desc/', addition.description),
-    path('model/<str:sentence>/', addition.model)
+    #path('model/<str:sentence>/', addition.model)
 ]
 
 

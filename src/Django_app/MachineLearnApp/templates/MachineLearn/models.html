@@ -2,29 +2,16 @@
 {% load static %}
 {% block content %} 
     <div id="rf" role="tabpanel">
-      <h2>Decision trees (and random forest)  </h2>
-      <p> {{ prediction }} </p>
-      <h3>How does it work?</h3>
-      <p>TODO</p>
 
-      <h3>Try the random forest on your own sentence!</h3>
-
-      <div class="form-group">
-        <textarea id="rftext" class="form-control breathe" placeholder="Enter your own review here"></textarea>
-
-        <button id="getsentiment" class="btn btn-dark breathe">Get sentiment!</button>
-
-        <p>Model prediction: <span id="rfpred">(None)</span></p>
-      </div>
-
-      <h3>Try the neuronal network on your own sentence!</h3>
+      <h3>Try the neuronal network and the random forrest on your own sentence!</h3>
       <div class="form-group">
         <!-- <button id="loadsentimentrf" class="btn btn-dark breathe">Load sentence from dataset</button> -->
         <form method="get" action=".">
         <textarea id="rftext"  name="sentence"  class="form-control breathe" placeholder="Enter your own review here"></textarea>
         <button type="submit" id="getsentiment" class="btn btn-dark breathe">Get sentiment!</button>
         </form >
-        <p> la prediction du model donne : {{ predictions }} </p>
+        <p> la prediction du neuronal network donne : {{ prediction }} </p>
+        <p> la prediction du de l'arbre de décision donne : {{ pred }} </p>
         <p>Model prediction: <span id="rfpred">(None)</span></p>
       </div>
 
