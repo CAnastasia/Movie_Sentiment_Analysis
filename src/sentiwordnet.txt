@@ -1,3 +1,4 @@
+Nr  Id          Pos     Neg Sentiment
 a	00001740	0.125	0	able
 a	00002098	0	0.75	unable
 a	00002312	0	0	dorsal

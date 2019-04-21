@@ -17,7 +17,7 @@ def model(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
     model.summary()
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     print("train ... ")
-    model.fit(X_train_norm, y_train,batch_size=128,epochs=3,validation_data=(X_test_norm,y_test), verbose=2)
+    model.fit(X_train_norm, y_train,batch_size=128,epochs=5,validation_data=(X_test_norm,y_test), verbose=2)
     #tester le model    
     #Prediction 
     return model
@@ -41,19 +41,20 @@ def model_lstm (total_size, max_length, X_train_norm, y_train, X_test_norm, y_te
     #Prediction 
     return model
 
-def model_lstm2 (total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
+def model_GRU (total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
     Embedding_Dim = 100
     class_dim = 5
     print('Building model...')
     model = Sequential()
     model.add(Embedding(total_size,Embedding_Dim,input_length = max_length))
-    model.add(GRU(128, input_shape=(X_train_norm.shape[1:]), activation='relu', recurrent_dropout=0.2))
+    model.add(Dropout(0.2))
+    model.add(GRU(128, input_shape=(X_train_norm.shape[1:]), activation='relu', recurrent_dropout=0.2, return_sequences=True))
     model.add(BatchNormalization())
-    model.add(GRU(128, input_shape=(X_train_norm.shape[1:]), activation='relu', recurrent_dropout=0.2))
+    model.add(GRU(128, input_shape=(X_train_norm.shape[1:]), activation='relu', recurrent_dropout=0.1, return_sequences=True))
     model.add(BatchNormalization())
-    model.add(GRU(128, input_shape=(X_train_norm.shape[1:]), activation='relu', recurrent_dropout=0.2))
+    model.add(GRU(32, input_shape=(X_train_norm.shape[1:]), activation='relu', recurrent_dropout=0.2))
     model.add(BatchNormalization())
-    model.add(Dense(32, input_dim=max_length, activation='relu'))
+    model.add(Dense(8, input_dim=max_length, activation='relu'))
     model.add(Dropout(0.2))
     model.add(Dense(5, activation = 'sigmoid'))
     model.summary()
@@ -64,7 +65,7 @@ def model_lstm2 (total_size, max_length, X_train_norm, y_train, X_test_norm, y_t
     #Prediction 
     return model
 
-def model_GRU(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
+def model_lstm2(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
     Embedding_Dim = 100
     class_dim = 5
     print('Building model...')
@@ -85,7 +86,7 @@ def model_GRU(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test
     model.summary()
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     print("train ... ")
-    model.fit(X_train_norm, y_train,batch_size=128,epochs=3,validation_data=(X_test_norm,y_test), verbose=2)
+    model.fit(X_train_norm, y_train,batch_size=128,epochs=5,validation_data=(X_test_norm,y_test), verbose=2)
     #tester le model    
     #Prediction 
     return model
