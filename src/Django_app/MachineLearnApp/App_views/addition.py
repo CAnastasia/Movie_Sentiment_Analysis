@@ -14,8 +14,8 @@ import pandas as pd
 import numpy as np
 from joblib import load
 
-path = "../NN/"
-path2= "../DT/"
+path = "../Django_app/NN/"
+path2= "../Django_app/DT/"
 print(os.listdir("./"))
 
 def date_actuelle(request):
@@ -97,12 +97,24 @@ def models(request):
         query = pad_sequences(query, maxlen=48)
         pred = mode.predict(query, verbose=1)
         prediction = np.round(np.argmax(pred, axis=1)).astype(int)
-
-
+        prediction = predict(prediction)
+        print(prediction)
         random_forest = load(path2+'random_forest.joblib')
         vectorizer = load(path2+'vectorizer.joblib')
         pred = random_forest.predict(vectorizer.transform([sentence]))
-
+        pred = predict(pred)
         return render(request, 'MachineLearn/models.html', locals())
     else:
         return render(request, 'MachineLearn/models.html')
+
+def predict(prediction):
+    if (prediction == [0]): 
+        return "Negative"
+    elif (prediction == [1]): 
+        return "Somewhat negative"
+    elif (prediction == [2]): 
+        return "Neutral"
+    elif (prediction == [3]):
+        return "Somewhat positive"
+    elif (prediction == [4]): 
+        return "Positive"

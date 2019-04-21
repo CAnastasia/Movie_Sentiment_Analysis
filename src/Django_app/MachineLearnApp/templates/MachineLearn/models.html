@@ -10,13 +10,11 @@
         <textarea id="rftext"  name="sentence"  class="form-control breathe" placeholder="Enter your own review here"></textarea>
         <button type="submit" id="getsentiment" class="btn btn-dark breathe">Get sentiment!</button>
         </form >
-        <p> la prediction du neuronal network donne : {{ prediction }} </p>
-        <p> la prediction du de l'arbre de décision donne : {{ pred }} </p>
-        <p>Model prediction: <span id="rfpred">(None)</span></p>
+        <p> The neural network prediction : {{ prediction }} </p>
+        <p> The decision tree pediction : {{ pred }} </p>
       </div>
 
-      <h3><a href="https://www.kaggle.com/mannko/rottentomatoes-decisiontree-randomforest-onehot/">Kaggle Kernel</a>
-      </h3>
+      <img class="center" src="{% static 'MachineLearn/imgs/NN_DT.jpg' %}" />
 
     </div>
 
