@@ -5,11 +5,11 @@ from keras.models import load_model
 from keras.models import Sequential,model_from_json
 
 def model(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
-    Embedding_Dim = 100
+    Embedding_Dim = 256
     class_dim = 5
     print('Building model...')
     model = Sequential()
-    model.add(Embedding(total_size,Embedding_Dim,input_length = max_length))
+    model.add(Embedding(total_size,Embedding_Dim))
     model.add(Dropout(0.2))
     model.add(GRU(units=32,dropout=0.2, recurrent_dropout=0.2))
     model.add(Dense(8, input_dim=max_length, activation='relu'))
@@ -17,9 +17,7 @@ def model(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
     model.summary()
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     print("train ... ")
-    model.fit(X_train_norm, y_train,batch_size=128,epochs=5,validation_data=(X_test_norm,y_test), verbose=2)
-    #tester le model    
-    #Prediction 
+    model.fit(X_train_norm, y_train,batch_size=128,epochs=8,validation_data=(X_test_norm,y_test), verbose=2)
     return model
 
 def model_lstm (total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
@@ -37,8 +35,6 @@ def model_lstm (total_size, max_length, X_train_norm, y_train, X_test_norm, y_te
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     print("train ... ")
     model.fit(X_train_norm, y_train,batch_size=128,epochs=3,validation_data=(X_test_norm,y_test), verbose=2)
-    #tester le model    
-    #Prediction 
     return model
 
 def model_GRU (total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
@@ -61,8 +57,6 @@ def model_GRU (total_size, max_length, X_train_norm, y_train, X_test_norm, y_tes
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     print("train ... ")
     model.fit(X_train_norm, y_train,batch_size=128,epochs=3,validation_data=(X_test_norm,y_test), verbose=2)
-    #tester le model    
-    #Prediction 
     return model
 
 def model_lstm2(total_size, max_length, X_train_norm, y_train, X_test_norm, y_test):
@@ -87,8 +81,6 @@ def model_lstm2(total_size, max_length, X_train_norm, y_train, X_test_norm, y_te
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     print("train ... ")
     model.fit(X_train_norm, y_train,batch_size=128,epochs=5,validation_data=(X_test_norm,y_test), verbose=2)
-    #tester le model    
-    #Prediction 
     return model
 
 def save_to_disk(model, filejs, fileh5):

@@ -18,6 +18,7 @@ def main():
     if os.path.exists("./model.h5") == False or os.path.exists("./model.h5") == False or os.path.exists("./tokenizer.pickle")==False:
         data = pd.read_csv("../datas/train.tsv", delimiter='\t', index_col=False, header=0)
         dictionary = pd.read_csv("../datas/datafile_fixed.tsv", delimiter='\t', index_col=False, header=0)
+        #fix sentiment dictionary -> delete first col from file 
         # f = open("../datas/sentiwordnet.tsv", "r")
         # g = open("../datas/datafile_fixed.tsv", "w")
 
@@ -34,16 +35,7 @@ def main():
         data['clean_review'] = clean_review(data.Phrase.values)
         dictionary['id_sentiment'] = add_sentiment_to_dictionary(dictionary.Pos.values, dictionary.Neg.values)
         total_sentences =  data['clean_review']
-        # import csv
-        # with open("data_treated.csv", "w") as outfile:
-        #     outfile.write("clean_review\n")
-        #     for entries in total_sentences:
-        #       s1 = entries.strip('[]')
-        #         s2 = s1.replace(",","")
-        #         s3 = s2.replace("'", "")
-        #         if s3:
-        #             outfile.write(s3)
-        #             outfile.write("\n")
+       
         #----------------------------------------------------------------------------------------------
         target_sentiment = data.Sentiment.values
         id_sentiments = dictionary['id_sentiment']
@@ -81,9 +73,7 @@ def main():
         print(mode)
         with open('tokenizer.pickle', 'rb') as handle:
             tokenizer = pickle.load(handle)
-
-    #test = pd.read_csv("test.tcv", delimiter='\t')
-    #query = tokenizer.texts_to_sequences(test['test'])
+            
     #want, enthusiastic, happiest
     test1 = ['I was enthusiastic after this scene ']
     #test1 = ngram_func(test1)

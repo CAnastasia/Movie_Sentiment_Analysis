@@ -63,11 +63,10 @@ def stop_word_phrase(review_col):
             filtered_sentence.append(w)
     return filtered_sentence
 
+#convert label in dictionary file
 def add_sentiment_to_dictionary(positive, negative):
     review_corpus=[]
     for i in range(0,len(positive)):
-        # if (positive[i] >= 0.5):
-        #     print ((positive[i] >= 0.5).all())
         if (positive[i] == negative[i]):
             review = str(2)
         elif (negative[i] >= 0.5).any() and (positive[i] < negative[i]).any():
